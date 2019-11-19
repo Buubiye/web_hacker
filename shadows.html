@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>one demo</title>
+
+  <style>
+    body { padding: 40px; }
+    label, input { display: block; }
+    .box { padding: 40px; width: 300px; text-align: center; margin: 30px 0; background: yellow; }
+    .box { box-shadow: 0px 0px 0px 0px black; }
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+
+    /*fix for FF unable to apply focus style bug */
+    border: 1px solid white;
+
+    /*required for proper track sizing in FF*/
+    width: 300px;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+	
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 21px;
+    width: 21px;
+    border-radius: 3px;
+    background: white;
+    margin-top: -4px;
+    border: 1px solid #ddd;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+    width: 300px;
+    height: 14px;
+    background: green ;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+input[type=range]::-moz-range-thumb {
+    border: 1px solid #ddd;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: blue;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+    width: 300px;
+    height: 5px;
+
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 10px;
+}
+input[type=range]::-ms-fill-upper {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+input[type=range]::-ms-thumb {
+    border: 1px solid #ddd;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: goldenrod;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
+}
+
+.jscolor{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: none;
+  box-shadow: grey 0px 0px 4px 1px;
+  display:inline-block;
+}
+.shadowText{
+  display:inline-block;
+
+}
+#bgcolor{
+  width: 50px;
+  display:inline-block;
+}
+.shadowSliders{
+  display:block;
+  
+}
+input.shadowSlider{
+  width: 185px;
+}
+.shadowHeader{
+  text-align: center;
+  background: #2c3e50;
+    color: white;
+    padding: 5px;
+}
+.shadow{
+  width: 200px;
+ box-shadow: 0px 0px 3px 3px #ddd;
+
+}
+  </style>
+
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="file:///C:/Users/PureTech/Desktop/jquery/jquery-ui.css"/>
+
+<script src="file:///C:/Users/PureTech/Downloads/jscolor-2.0.4/jscolor.js"></script>
+
+</head>
+<body>
+  <div class="shadow">
+    <h3 class="shadowHeader"> Shadow </h3>
+
+<div class="shadowSliders">
+  <button class="jscolor {valueElement:'bgcolor',        onFineChange:'setTextColor(this)'} shadowcolor">
+
+</button> <p class="shadowText">Shadow Color:</p> <input id="bgcolor" value="red"/>
+
+  <label><span>X Offset</span><input class="xOffset shadowSlider" type="range" min="-50" max="50" value="0"></label>
+  <label><span>Y Offset</span><input class="yOffset shadowSlider" type="range" min="-50" max="50" value="0"></label>
+  <label><span>Blur</span><input class="blur shadowSlider" type="range" min="-50" max="50" value="0"></label>
+  <label><span>Spread</span><input class="spread shadowSlider" type="range" min="-50" max="50" value="0"></label>
+</div>
+</div>
+  <div class="box">Drop Shadows</div>
+
+
+<script>
+    jQuery(document).ready(function ($) {
+      $('input').change(function(){
+        var box = $('.box');
+        var bgColor = '#'+$('#bgcolor').val();
+        var xOffset = $('.xOffset').val();
+        var yOffset = $('.yOffset').val();
+        var blur = $('.blur').val();
+        var spread = $('.spread').val();
+        $(box).css('box-shadow',''+ xOffset +'px '+yOffset+'px '+ blur +'px '+ spread +'px '+bgColor);
+      });
+    });
+
+
+
+</script>
+
+</body>
+</html>

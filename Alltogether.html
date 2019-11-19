@@ -1,0 +1,283 @@
+<!doctype>
+<html>
+<head>
+
+  <script src="/library/jquery/jquery-1.12.4.js"></script>
+    <script src="/library/jquery/jquery-ui-1.12.0.js"></script>
+    <link rel="stylesheet" href="/library/jquery/jquery-ui.css" type="text/css" media="all" />
+
+  <link rel="stylesheet" href="/library/Spectrum/spectrum.css" type="text/css" media="all" />
+    <script src="/library/Spectrum/spectrum.js"></script>
+
+	<link rel="stylesheet" href="/cssalltogether.css"/>
+	<script src="/jsalltogether.js"></script>
+	<script src="/library/jscolor-2.0.4/jscolor.js"></script>
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.9/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	</head>
+<body>
+
+
+<!-- html code editor and text editor -->
+
+
+<nav class="navbar">
+<div class="nav-content logo"><h2>Hodsan Page Builder</h2></div>
+<div class="nav-content"></div>
+<div class="nav-content menu"></div>
+</nav>
+<div class="me3"> 
+
+
+<div>
+<div  style="background:green; height: 300px; width: 300px; color: white">
+<h1>i'm his div </h1>
+</div>
+<p> this is editable </p>
+<input placeholder="add text"/>
+<button>Make me </button>
+<h1> this is helpful </h1>
+<div class="active test" style="background: green; height:50px; width: 100px; color: white;">Active</div>
+</div>
+ </div>
+
+<pre><code class="javascript showSource">
+</code></pre>
+<button class="generate"> Generate code </button>
+<div class="cssStylers">
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the start of color Pelette js -------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+<div class="colorpelette">
+
+
+<div class="color-providers">
+  <h3 class="cheader"> Color Editor</h3>
+  <div class="borders">
+    <button class="border colorer"></button><p class="b-text">Border</p><br><br>
+    <div class="border-specific">
+      <button class="borderl colorer bor">BL</button>
+    <button class="bordert colorer bor">BT</button>
+    <button class="borderb colorer bor">BB</button>
+    <button class="borderr colorer bor">BR</button>
+    <div class="square-in"></div>
+    </div>
+
+  </div>
+    <div class="bg-block"><button class="background  colorer"></button><p class="bg-text">  Background</p></div><br>
+    <div class="t-block extrablocks"><button class="text colorer extracolorers"></button><p class="t-text extratexts">Text</p></div><br>
+
+   <div class="colorselectors"><button class="displaycolor"> Palette</button><div class="palettebg"></div><input class="spectrumbg"/></div>
+</div>
+
+</div>
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the end of color Pelette js -------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the start of border editor js -------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+ <div class="border-settings">
+
+  <h3 class="border-text">Border</h3>
+<div class="border-width">
+  <h4 class="bw-text"> Border Width</h4>
+   <div id="a_slider2"></div> <input class="tooltiptext" type="number" id="a2" value="">
+<div class="boxes">
+  <div class="i adder3 xx"></div>
+  <div class="ii adder xx"></div>
+  <div class="iii adder2 xx"></div>
+  <div class="iv adder4 xx"></div>
+</div>
+
+<div class="valuechanger">
+  <input type="Button" class="ff bt subtruct" value="-" />
+   
+    <input class="ff inval borderVal" value="0"/>
+    
+    <input type="Button" class="ff bt add" value="+" />
+ </div>
+</div>
+
+<div class="border-radius">
+  <h4 class="br-text"> Border Radius</h4>
+   <div id="a_slider3"></div> <input class="tooltiptext" type="number" id="a3" value=""> 
+<div class="l">
+<div class="top">
+  <div class="topL"></div>
+  <div class="bottomL"></div>
+</div>
+<div class="ttte"></div>
+<div class="bottom">
+  <div class="topR"></div>
+    <div class="bottomR"></div>
+</div>
+
+  <div class="valuechangerR">
+  <input type="Button" class="ff bt subtructR"value="-" />
+   
+    <input class="ff inval borderValR" value="0"/>
+    
+    <input type="Button" class="ff bt addR" value="+" />
+ </div>
+
+</div>
+</div>
+<h4 class="borderStyle-title"> Border Style</h4>
+<select id="borderStyle">
+  <option value="volvo">Border-style</option>
+  <option id="b-style" value="">Solid</option>
+  <option id="b-style" value="">Dotted</option>
+  <option id="b-style" value="">Dashed</option>
+  <option id="b-style" value="">Double</option>
+  <option id="b-style" value="">None</option>
+  
+</select>
+
+</div>
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the end of border editor js -------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the start of position and size editor -------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+<!----------- position and size -------------->
+<div class="position-size">
+<!-- ps = position and size -->
+<h2 class="ps-header">Position and size</h2>
+<div class="ps-body">
+<div class="height">
+  <h4 class="ps-text">Height</h4>
+  <input id="height" class="ps-spinners"/>
+</div>
+<div class="width">
+  <h4 class="ps-text">Width</h4>
+  <input id="width" class="ps-spinners"/>
+</div>
+
+<div class="z-index">
+  <h4 class="ps-text">Z-index</h4>
+  <input id="z-index" class="ps-spinners"/>
+</div>
+
+<h4> Postion</h4>
+<select id="position_">
+  <option>position</option>
+  <option value="">Relative</option>
+  <option value="">Static</option>
+  <option value="">Obsolute</option>
+  <option value="">Fixed</option>
+  <option value="">Sticky</option>
+
+</select>
+<div class="Top">
+  <h4 class="ps-text">Top</h4>
+  <input id="top" class="ps-spinners"/>
+</div>
+<div class="left">
+  <h4 class="ps-text">Left</h4>
+  <input id="left" class="ps-spinners"/>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the end of position and size editor -------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the start of margin and padding editor-------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+<div id="margin_padding">
+
+
+<h2 class="mp-title">Margin & Padding</h2>
+
+<!--margin padding sliders-->
+<h4>Margin</h4><div id="marginSlider"></div> <input class="marginSettingInput" type="number" id="marginInput" value="">
+<h4>Padding</h4><div id="paddingSlider"></div> <input class="paddingSettingInput" type="number" id="paddingInput" value="">
+<!-- mp = margin-padding-->
+<div id="margin">
+ <label class="margin-label"> Margin</label>
+   <input class="margin-top mp margin-color" type="number"/>
+   <input class="margin-bottom mp margin-color" type="number"/>
+   <input class="margin-left mp margin-color" type="number"/>
+   <input class="margin-right mp margin-color" type="number"/>
+     <div id="padding">
+       <label class="padding-label">Padding</label>
+               <input class="padding-top mp padding-color" type="number"/>
+                <input class="padding-left mp padding-color" type="number"/>
+                 <input class="padding-right mp padding-color" type="number"/>
+                  <input class="padding-bottom mp padding-color" type="number"/>
+
+     </div>
+
+
+
+
+</div>
+
+</div>
+
+
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the end of margin and padding editor-------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the start of shadow editor-------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+<div class="shadow">
+    <h3 class="shadowHeader"> Shadow </h3>
+
+<div class="shadowSliders">
+  <button class="jscolor {valueElement:'bgcolor',        onFineChange:'setTextColor(this)'} shadowcolor">
+
+</button> <p class="shadowText">Shadow Color:</p> <input id="bgcolor" value="red"/>
+
+  <label><span>X Offset</span><input class="xOffset shadowSlider" type="range" min="-50" max="50" value="0"></label>
+  <label><span>Y Offset</span><input class="yOffset shadowSlider" type="range" min="-50" max="50" value="0"></label>
+  <label><span>Blur</span><input class="blur shadowSlider" type="range" min="-50" max="50" value="0"></label>
+  <label><span>Spread</span><input class="spread shadowSlider" type="range" min="-50" max="50" value="0"></label>
+</div>
+</div>
+
+
+<!-- -----------------------------------------------------------------------------------------*/
+/* ---------------------------- the end of shadow editor-------------------------------*/
+/* ----------------------------------------------------------------------------------------->
+
+
+</div>
+
+
+</body>
+
+</html>

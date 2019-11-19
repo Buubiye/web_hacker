@@ -1,0 +1,65 @@
+
+
+
+
+<div class="header">
+
+
+<h1 class="header-text"> Welcome to Hodsan website styler </h1>
+
+
+
+<button> Generate Code </button>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js">
+
+$(function(){
+   var getHtml = $('.sample').html();
+   var getCss = $('.active').attr('style');
+   
+   $('.sample').click(function(){
+      $('.html').text(getHtml);
+   });
+   //$('.html').text(getHtml);
+   //$('.css').text().append(getCss);
+   
+});
+</script>
+
+<style>
+.header{
+height:35%;
+width:100%;
+background: #007fff;
+color: white;
+
+}
+.header-text{
+text-align: center;
+padding-top:40px;
+}
+</style>

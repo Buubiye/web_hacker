@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>one demo</title>
+  <style>
+  .em {
+    width: 60px;
+    height: 60px;
+    margin: 50px;
+    float: left;
+    background: #cccccc;
+    
+    
+  }
+  p {
+    color: red;
+    margin: 0;
+    clear: left;
+  }
+  .active{
+    border: 3px solid #f5d926;
+
+  }
+  .marginTop .marginLeft .marginBottom .marginRight{
+    
+    width: 50px;
+    border-radius: 5px;
+    background: red;
+  }
+#sort{
+  height:200px;
+}
+#connected{
+  height:200px;
+  width:500px;
+  background: purple;
+}
+  </style>
+  
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+    
+    
+<link rel="stylesheet" type="text/css" href="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui.css"/>
+
+<script src="file:///C:/Users/PureTech/Downloads/jscolor-2.0.4/jscolor.js"></script>
+</head>
+<body>
+<section>
+     <div id="sort">
+           <div class="em"></div>
+           <div class="em"></div>
+           <div class="em"></div>
+           <div class="em"></div>
+           <div class="em"></div>
+     </div>
+     <div id="connected">
+     </div>
+</section>
+
+
+
+
+<p>Click a green square...</p>
+ 
+
+<script>
+$(function(){
+  var marginSliders = $('<div class="marginers"><div class="mTop"><div class="marginTop"></div></div><div class="mLeft"><div class="marginLeft"></div></div><div class="mRight"><div class="marginRight"></div></div><div class="mBottom"> <div class="marginBottom"></div></div></div>');
+
+   // full values width + margin + padding
+  var getOuterWidth = $(".active").outerWidth(true);
+  var getOuterHeight = $(".active").outerHeight(true);
+
+    
+
+  // convert the outer width and height to element 
+  var outerElement = $('<div class="outerElement"></div>');
+
+  var marginTop = $('<div class="marginTop"></div>'); 
+  var marginRight = $('<div class="marginRight"></div>');
+  var marginBottom = $('<div class="marginBottom"></div>');
+  var marginLeft = $('<div class="marginLeft"></div>');
+
+  $(".em").addClass("tab");
+    $(".tab").click(function () {
+        if(!$(this).hasClass('active'))
+        {
+            $(".tab.active").removeClass("active");
+            $(".tab.active").remove(".marginers");
+            $(this).addClass("active");
+                   
+        }
+        // add or remove margin sliders 
+        if($(this).hasClass('active')){
+          $(".active").append(marginTop, marginLeft, marginRight, marginBottom, outerElement);
+        }else{
+          $(marginTop, marginLeft, marginRight, marginBottom).remove();
+        }
+     $(".tab").remove(".marginers");
+        //get the height, width, Margins, and paddings
+        var getHeight = $(".active").height();
+        var getWidth = $(".active").width();
+        var getMarginTop = $(".active").css("marginTop")
+        .replace("px", "");
+        var getMarginLeft = $(".active").css("marginLeft")
+        .replace("px", "");
+        var getMarginBottom = $(".active").css("marginBottom")
+        .replace("px", "");
+        var getMarginRight = $(".active").css("marginRight")
+        .replace("px", "");
+
+
+        // convert the margin representers to sliders
+/*        $(".marginTop").slider({
+          min: 0,
+          max: 1000,
+          value: getMarginTop,
+          orientation: "vertical",
+          step: 1,
+          animate: true,
+          slide: function (event, ui) {
+          var heb2 = (ui.value);
+          $("#a_field2").val(ui.value);
+          $("#a2").text(heb2);
+          $(this).css({marginLeft: heb2});
+          }
+          });
+
+        $(".marginLeft").slider({
+          min: 0,
+          max: 1000,
+          value: getMarginLeft,
+          step: 1
+        });
+        $(".marginBottom").slider({
+          min: 0,
+          max: 1000,
+          value: getMarginBottom,
+          orientation: "vertical"
+        });
+        $(".marginRight").slider({
+          min: 0,
+          max: 1000,
+          value: getMarginRight
+        });
+*/
+        // give the element the margins value to make margin reprentives
+        // top margin box
+        $(".marginTop").css({"height": getMarginTop, "width": getWidth, "background": "#007fff", "marginTop": -getMarginTop-3});
+        // left margin box
+        $(".marginLeft").css({"width": getMarginLeft, "height": getHeight, "background": "#007fff", "marginLeft": -getMarginLeft-3, "marginTop": "3px"});
+        // bottom margin box
+        $(".marginBottom").css({"height": getMarginBottom, "width": getWidth, "background": "#007fff", "marginTop": "3px"});
+        // right margin box 
+        $(".marginRight").css({"width": getMarginRight, "height": getHeight, "background": "#007fff", "marginLeft": getWidth+3, "marginTop": -getHeight});
+    });
+
+        // give the outer element its
+        $(".outerElement").css({
+            "height": getOuterHeight, "width": getOuterWidth, "background": "green"
+        });
+  // make the .active element resizable
+$(".em").resizable({
+      autoHide: "true",
+      grid: "5"
+});
+
+// make the margin representers resizable
+$(marginBottom).resizable({
+  resize: function(){
+    var giveMarginBottom = $(this).height();
+    $(".active").css({"marginBottom": giveMarginBottom });
+  }
+});
+$(marginLeft).resizable({
+  stop: function(){
+    $(".active").trigger("click");
+  },
+  resize: function(){
+    var giveMarginLeft = $(this).width();
+    $(".active").css({"marginLeft": giveMarginLeft });
+    $(".marginTop, .marginLeft, .marginRight, .marginBottom").height("0px");
+  },
+  maxWidth: 350
+});
+$(marginRight).resizable({
+  resize: function(){
+    var giveMarginRight = $(this).width();
+    $(".active").css({"marginRight": giveMarginRight });
+  }
+});
+$(marginTop).resizable({
+  stop: function(){
+    $(".active").trigger("click");
+  },
+  resize: function(){
+    var giveMarginTop = $(this).height();
+    $(".active").css({"marginTop": giveMarginTop });
+    $(".marginTop, .marginLeft, .marginRight, .marginBottom").height("0px");
+  }
+  
+});
+
+var marginTopLessThan10 = $(".marginTop").height();
+var tenpx = 10+"px";
+if(marginTopLessThan10==tenpx){
+       $("body").css({background: "green"});
+}
+
+
+  $("#sort").sortable({
+    connectToSortable: "#connected",
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+</script>
+ 
+ 
+ 
+   <script>
+  $( function() {
+    $( "#sortable" ).sortable({
+      revert: true
+    });
+    $( "#draggable" ).draggable({
+      connectToSortable: "#sortable",
+      helper: "clone",
+      revert: "invalid"
+    });
+    $( "ul, li" ).disableSelection();
+  } );
+  </script>
+</head>
+<body>
+ 
+<ul>
+  <li id="draggable" class="ui-state-highlight">Drag me down</li>
+</ul>
+ 
+<ul id="sortable">
+  <li class="ui-state-default">Item 1</li>
+  <li class="ui-state-default">Item 2</li>
+  <li class="ui-state-default">Item 3</li>
+  <li class="ui-state-default">Item 4</li>
+  <li class="ui-state-default">Item 5</li>
+</ul>
+ 
+ 
+</body>
+</body>
+</html>
+ 
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  
+  
+
+  
+  
+  
+
+  
+  <script src="file:///C:/Users/PureTech/Desktop/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/jquery/jquery-ui-1.12.0.js"></script>
+    
+    
+<link rel="stylesheet" type="text/css" href="file:///C:/Users/PureTech/Desktop/jquery/jquery-ui.css"/>
+    
+  
+
+  
+    
+  
+
+  
+
+  <style type="text/css">
+.noclass{
+  border: 0px solid grey;
+}
+ .ui-slider-handle{
+
+    border-radius: 10px;
+    border: 3px solid grey;
+    height: 12px;
+    width: 12px;
+    background: white;
+   }
+   .ui-slider{
+        height: 7px;
+    background: #a8a8a8;
+    margin: 20px;
+   }
+     .focused {
+    background: #abcdef;
+  }
+  .ui-slider{
+    background: #007fff;
+  }
+  .cn{
+    border: 3px solid blue;
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+  }
+  .ng{
+    border: 1px solid black;
+    width: 190px;
+    height: 90px;
+  }
+
+#nval{
+  width: 30px;
+}
+.merger{
+      position: relative;
+    left: -6px;
+    top: 21px;
+    
+}
+.ui-slider-horizontal .ui-slider-range-max{
+height:5px;
+}
+.ui-widget.ui-widget-content{
+height:0px;
+border: 0px;
+}
+
+
+
+
+  </style>
+
+  <title> by Buubiye</title>
+
+  <script type='text/javascript'>//<![CDATA[
+$(function(){
+   
+   $(".marginTop").resizable({
+    handles: "n",
+    start: function(){
+        // get the height of .marginTop
+var getMarginTopOfMarginTop = $(".marginTop").css("height");
+
+// connect the height of .marginTop to the margin top of .testElement
+
+$(".testElement").css({marginTop: getMarginTopOfMarginTop});
+    }
+  });
+
+
+   $(".marginLeft").resizable({
+    handles: "w"
+  });
+
+          var wid = $(".marginLeft").css("width");
+          var marg = $(".testElement").css("marginLeft");
+          var getMarginTopOfMarginLeft = wid - marg;
+
+// connect the height of .marginTop to the margin top of .testElement
+
+$(".testElement").css({marginLeft: getMarginTopOfMarginLeft});
+
+  var changeEl = $(".testElement").css("height");
+
+  $(".changeme").css(changeEl);
+
+
+$("*").addClass("meall");
+$( ".meall" ).one("click", function(index) {
+   
+      var elementClass = $(this).attr('.class');
+    $(this).css({border: "4px solid red"});
+        $("#inval").val(elementClass); 
+   
+});
+
+});
+
+
+</script>
+
+  
+</head>
+
+<body class="noclass">
+<input value="xxx" id="inval"/>
+  <div class="main">
+
+<div class="testElement">
+    
+    <div class="marginTop"></div>
+    <div class="marginLeft"></div>
+    <div class="marginBottom"></div>
+    <div class="marginRight"></div>
+</div>
+
+</div>
+  <style>
+  .main{
+    padding: 20px;
+    border: 2px solid blue;
+    height: 600px;
+    width: 900px;
+  }
+  .testElement{
+    width: 300px;
+    height: 150px;
+    background: lightblue;
+        border: 1px solid black;
+
+  }
+  .marginTop{
+    height: 50px;
+    width: 50px;
+    background: lightgreen;
+    margin-top: -50px;
+    margin-left: 120px;
+
+  }
+  .marginLeft{
+    margin-left: -50px;
+    margin-top: 50px;
+    height: 50px;
+    width: 50px;
+    background: lightgreen;
+  }
+  .marginBottom{
+    margin-top: 50px;
+    margin-left: 120px;
+    height: 50px;
+    width: 50px;
+    background: lightgreen;
+  }
+  .marginRight{
+    margin-left: 300px;
+    margin-top: -150px;
+    height: 50px;
+    width: 50px;
+    background: lightgreen;
+  }
+
+  </style>
+
+</div>
+</div>
+</div>
+</body>
+
+</html>
+-->
+
+ 

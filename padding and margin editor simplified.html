@@ -1,0 +1,331 @@
+
+
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+  <link rel="stylesheet" href="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui.css" type="text/css" media="all" /> 
+
+
+
+
+
+<div id="margin_padding">
+
+<h2 class='mp-title'>Margin & Padding</h2>
+<!-- mp = margin-padding-->
+<div id="margin">
+ <label> Margin</label>
+   <input class="margin-top mp margin-color" type=""/> 
+   <input class="margin-bottom mp margin-color" type=""/>
+   <input class="margin-left mp margin-color" type=""/>
+   <input class="margin-right mp margin-color" type=""/>
+     <div id="padding">
+       <label style="font-size:12px;">Padding</label>
+               <input class="padding-top mp padding-color" type=""/>
+                <input class="padding-left mp padding-color" type=""/>
+                 <input class="padding-right mp padding-color" type=""/>
+                  <input class="padding-bottom mp padding-color" type=""/>
+
+     </div>
+
+     
+     
+
+</div>
+
+</div>
+
+
+
+<style>
+#margin_padding{
+    width: 210px;
+    box-shadow: 0px 0px 3px 3px #ddd;
+    background: white;
+}
+.mp{
+width: 35px; 
+height:20px;
+position: relative;
+border:1px solid black;
+}
+
+.mp-title{
+    text-align: center;
+    background: #2c3e50;
+    color: white;
+    padding: 5px;
+    width: 200px;
+}
+
+.margin-color{
+background: #f6c65f;
+color: white;
+}
+.padding-color{
+background: #5fc5f6;
+color: white;
+
+}
+
+#margin{
+background: #f6c65f;
+position: relative;
+border:1px solid black;
+height:190px;
+width:100%;
+}
+#padding{
+background: #5fc5f6;
+position: relative;
+    /*margin-left: 80px;*/
+	border:1px solid black;
+  height:120px;
+  width:120px;
+  left: 43px;
+    top: 15px;
+}
+
+/*.margin-top{left: 80px;}
+.margin-left{position: relative; top: 42px;}
+.margin-right{left: 160px; position: relative; top:-42px;}
+.margin-bottom{left: 80px;}
+
+#padding{margin-left:80px;}
+.padding-top{}
+.padding-left{margin-left: -35px;}
+.padding-right{    margin-left: 35px; margin-top: -20px;}
+.paddding-bottom{}*/
+
+
+
+
+.margin-top{
+        left: 35px;
+}
+.margin-left{
+     left: -130px;
+    top: 85px;
+    margin-top: -12px;
+}
+.margin-right{
+    left: 7px;
+    top: 85px;
+}
+.margin-bottom{
+        left: -3px;
+    top: 170px;
+    right: 5px;
+}
+
+.padding-top{
+        left: -1px;
+}
+.padding-left{
+
+    left: -82px;
+    top: 50px;
+}
+.padding-right{    
+    left: 85px;
+    top: 30px;
+}
+.padding-bottom{
+    top: 80px;
+    left: 4px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<div class="active" style="height: 100px; width:100px; border: 40px solid green"></div>
+
+
+<script>
+
+
+$('.marginInputs').click(function(){
+  if(!$(this).hasClass('activeInput')){
+     $('.marginInputs.activeInput').removeClass('activeInput');
+     $(this).addClass('activeInput');
+  }
+});
+
+/*------ margin-top ------------------*/
+var getMarginTop = '';
+$('.active').click(function(){
+var getMarginTop = $('.active').css('marginTop').replace("px", "");
+$(".margin-top").val(getMarginTop);
+});
+// set the editor 
+// the input and slider
+$('.margin-top').val(getMarginTop);
+
+
+
+$(".margin-top").on('change', function() {
+    $("#mt-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-top').val();
+    $('.active').css({marginTop: setBW+'px'});
+});
+
+/*------ margin-Left ------------------*/
+var getMarginLeft = '';
+$('.active').click(function(){
+var getMarginLeft = $('.active').css('marginLeft').replace("px", "");
+$(".margin-left").val(getMarginLeft);
+});
+// set the editor 
+// the input and slider
+$('.margin-left').val(getMarginLeft);
+
+
+
+$(".margin-left").on('change', function() {
+    $("#ml-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-left').val();
+    $('.active').css({marginLeft: setBW+'px'});
+});
+
+/*------ margin-Right ------------------*/
+var getMarginRight = '';
+$('.active').click(function(){
+var getMarginRight = $('.active').css('marginRight').replace("px", "");
+$(".margin-right").val(getMarginRight);
+});
+// set the editor 
+// the input and slider
+$('.margin-right').val(getMarginRight);
+
+
+$(".margin-right").on('change', function() {
+    $("#mr-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-right').val();
+    $('.active').css({marginRight: setBW+'px'});
+});
+/*------ margin-Bottom ------------------*/
+var getMarginBottom = '';
+$('.active').click(function(){
+var getMarginBottom = $('.active').css('marginBottom').replace("px", "");
+$(".margin-bottom").val(getMarginBottom);
+});
+// set the editor 
+// the input and slider
+$('.margin-bottom').val(getMarginBottom);
+
+
+$(".margin-bottom").on('change', function() {
+    $("#mb-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-bottom').val();
+    $('.active').css({marginBottom: setBW+'px'});
+});
+
+/*------ padding-top ------------------*/
+var getPaddingTop = '';
+$('.active').click(function(){
+var getPaddingTop = $('.active').css('paddingTop').replace("px", "");
+$(".padding-top").val(getPaddingTop);
+});
+// set the editor 
+// the input and slider
+$('.padding-top').val(getPaddingTop);
+
+
+$(".padding-top").on('keyup', function() {
+    $("#pt-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-top').val();
+    $('.active').css({paddingTop: setBW+'px'});
+});
+
+
+/*------ padding-Left ------------------*/
+var getPaddingLeft = '';
+$('.active').click(function(){
+var getPaddingLeft = $('.active').css('paddingLeft').replace("px", "");
+$(".padding-left").val(getPaddingLeft);
+});
+// set the editor 
+// the input and slider
+$('.padding-left').val(getPaddingLeft);
+
+
+$(".padding-left").on('keyup', function() {
+    $("#pl-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-left').val();
+    $('.active').css({paddingLeft: setBW+'px'});
+});
+
+/*------ padding-Right ------------------*/
+var getPaddingRight = '';
+$('.active').click(function(){
+var getPaddingRight = $('.active').css('paddingRight').replace("px", "");
+$(".padding-right").val(getPaddingRight);
+});
+// set the editor 
+// the input and slider
+$('.padding-right').val(getPaddingRight);
+
+
+$(".padding-right").on('keyup', function() {
+    $("#pr-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-right').val();
+    $('.active').css({paddingRight: setBW+'px'});
+});
+/*------ padding-Bottom ------------------*/
+var getPaddingBottom = '';
+$('.active').click(function(){
+var getPaddingBottom = $('.active').css('paddingBottom').replace("px", "");
+$(".padding-bottom").val(getPaddingBottom);
+});
+// set the editor 
+// the input and slider
+$('.padding-bottom').val(getPaddingBottom);
+
+
+
+$(".padding-bottom").on('change', function() {
+    $("#pb-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-bottom').val();
+    $('.active').css({paddingBottom: setBW+'px'});
+});
+
+$(".mp").draggable();
+$("#margin").draggable();
+$("#padding").draggable();
+</script>

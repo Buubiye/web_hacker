@@ -1,0 +1,334 @@
+<!DOCTYPE html><html>
+<!-- Mirrored from demos.subinsb.com/text-editor-jquery/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Oct 2016 17:48:51 GMT -->
+<head>
+
+<meta name="description" value="Coding without experiments is stupid and exhausting. Why not some experiments ? Take a look at my Web lab."></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="utf-8"/>
+<title>Simple Text Editor Created Using jQuery - Subin's Lab</title>
+
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+  <link rel="stylesheet" href="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui.css" type="text/css" media="all" />
+
+  <title>Simple Text Editor Created Using jQuery</title></head><body>
+
+
+<style>
+
+body{
+  font-family: open sans;
+}
+.editorsoftext{
+	float:left;
+}
+sub{
+	vertical-align: sub;
+}
+sup{
+    vertical-align: super;
+}
+#textarea{
+	display: block;
+}
+.activetext{
+    border: 1px solid red;
+}
+[contenteditable]:focus { outline: 0px solid transparent; }
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ico{
+  height: 20px;
+  width: 20px;
+}
+</style>
+
+<div class="editingbuttons" contenteditable="false">
+<button id="bold" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/bold.svg"/></button>
+<button id="italic" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/italic.svg"/></button>
+<button id="underline" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/underline.svg"/></button>
+<button id="strikeThrough" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/strikethrough.svg"/></button>
+<button id="subscript" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/subscript.svg"/></button>
+<button id="superscript" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/superscript.svg"/></button>
+<button id="insertUnorderedList" class="editorsoftext"><img class="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\ico" src="icons/unordered-list.svg"/></button>
+<button id="insertOrderedList" class="editorsoftext"><img class="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\ico" src="icons/ordered-list.svg"/></button>
+<button id="justifyLeft" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/justify-left.svg"/></button>
+<button id="justifyCenter" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/justify-center.svg"/></button>
+<button id="justifyRight" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/justify-right.svg"/></button>
+<button id="justifyFull" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/justify-full.svg"/></button>
+<button id="link" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/link.svg"/></button>
+<button id="unlink" class="editorsoftext"><img class="ico" src="file:///C:\Users\PureTech\Downloads\Trumbowyg-master\src\ui\icons/unlink.svg"/></button><br>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content" style="text-align: center">
+    <span class="close">×</span>
+    <h2> Add Link </h2>
+    <input id="linkvalue" value="http://"/><br>
+    <p ><input type="checkbox"/>Open In A New Tab.</p>
+    <button class="save">Save</button>
+  </div>
+
+</div>
+
+<div id='textarea' contenteditable>make it happen</div>
+
+<button id="code">source code</button>
+<code contenteditable class="codeeditor"></code>
+
+<script>
+$('#bold').click(function () {
+    document.execCommand('bold');
+});
+$('#italic').click(function () {
+    document.execCommand('italic');
+});
+$('#underline').click(function () {
+    document.execCommand('underline');
+});
+$('#strikeThrough').click(function () {
+    document.execCommand('strikeThrough');
+});
+$('#subscript').click(function () {
+    document.execCommand('subscript');
+});
+$('#superscript').click(function () {
+    document.execCommand('superscript');
+});
+$('#insertUnorderedList').click(function () {
+    document.execCommand('insertUnorderedList');
+});
+$('#insertOrderedList').click(function () {
+    document.execCommand('insertOrderedList');
+});
+$('#justifyLeft').click(function () {
+    document.execCommand('justifyLeft');
+});
+$('#justifyCenter').click(function () {
+    document.execCommand('justifyCenter');
+});
+$('#justifyRight').click(function () {
+    document.execCommand('justifyRight');
+});
+$('#justifyFull').click(function () {
+    document.execCommand('justifyFull');
+});
+
+$("#link").click(function(){
+var url = $("#linkvalue").val();
+var selection = document.getSelection();
+document.execCommand('createLink', true, url);
+//selection.anchorNode.parentElement.target = '_blank';
+});
+
+
+$(function(){
+
+
+$('.mm').click(
+               function(){
+                   $(this).attr('contentEditable',true);
+
+                   if(!$(this).hasClass("activex")){
+                      $(".mm").removeClass("activex");
+                      $(this).addClass("activex");
+                     // $(".editingbuttons").prependTo(".activex");
+
+                   }
+
+               });
+/* make the text editor and the code editor */
+ $(".me3").on('keyup', function(){
+      var source = $(".me3").html();
+      $(".showSource").text(source);
+
+
+ });
+ 
+ 
+ 
+ $('.showSource').keyup(function(){
+     var sourceCode = $('.showSource').text();
+	 $('.me3').html(sourceCode);
+ });
+
+
+var activex = $(".activex");
+  var activexoffset = activex.offset();
+  $(".editingbuttons").offset({left: activexoffset.left, top: activexoffset.top });
+
+});
+</script>
+
+<button contenteditable="true" class="maker"> Make me </button>
+
+<p contenteditable="true" class="me3"> make the best bro. </p>
+
+<div contenteditable="true" class="showSource"></div>
+<pre></pre>
+<button class="xxshowsource">Show Source</button>
+<script>
+$('.showsource').click(function(){
+    $('pre').text($('h1,h2,p')[0].outerHTML)
+});
+
+$('h1,h2,p[contenteditable=true]').keydown(function(e) {
+    // trap the return key being pressed
+    if (e.keyCode == 13) {
+      // insert 2 br tags (if only one br tag is inserted the cursor won't go to the second line)
+      document.execCommand('insertHTML', false, '<br>');
+      // prevent the default behaviour of return key pressed
+      return false;
+    }
+  });
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("link");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+
+<!--
+
+
+<div class="site-header">
+<a href="http://demos.subinsb.com/" class="site-logo" title="Coding Without Experiments is Just Stupid">Subin's Lab <span class="site-byline">Coding Experiments</span></a>
+<div id="topRightSection">
+<ins data-revive-zoneid="1" data-revive-id="2a97f2e1048d9e7638b551730627dc14"></ins>
+
+</div>
+</div>
+<div id="content"><h2>Simple Text Editor With jQuery</h2><div class="ze ie"></div><style>.font-bold.bold{font-weight:bold}.italic{font-style:italic}.selected .btn{background:orange!important}#openpb{margin:15px}</style><button type="button" class="btn orange" id='stext'>Text</button>&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" class="btn blue" id='shtml'>HTML</button><div id="controls" style="margin: 10px;">
+<a id="bold" style="color:black;display: inline-block;" class="font-bold">
+<button type="button" class="btn indigo">B</button>
+</a>&nbsp;&nbsp;&nbsp;
+<a
+id="italic" style="color:black !important;display: inline-block;"class="italic">
+<button
+type="button" class="btn indigo">I</button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="underline" class="underline" style="display: inline-block;">
+<button
+type="button" class="btn indigo"><u>U</u></button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="strikeThrough" class="strikeThrough" style="display: inline-block;">
+<button
+type="button" class="btn indigo"><strike>abc</strike></button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="subscript" class="subscript" style="display: inline-block;">
+<button
+type="button" class="btn indigo">X<sub>A</sub></button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="superscript" class="superscript" style="display: inline-block;">
+<button
+type="button" class="btn indigo">X<sup>A</sup></button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="insertUnorderedList" class="insertUnorderedList" style="display: inline-block;">
+<button
+type="button" class="btn indigo"><img style="height: 25px; width: 25px; margin-top: 5px;"src="file:///C:/Users/PureTech/Desktop/icons/unordered-list.svg"></button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="insertOrderedList" class="insertOrderedList" style="display: inline-block;">
+<button
+type="button" class="btn indigo"><img style="height: 25px; width: 25px; margin-top: 5px;"src="file:///C:/Users/PureTech/Desktop/icons/ordered-list.svg"></button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a
+id="link" class="link" style="display: inline-block;">
+<button
+type="button" class="btn indigo">Link</button>
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+<select
+id="fonts" class="g-button"><option
+value="Normal">Normal</option><option
+value="Arial">Arial</option><option
+value="Comic Sans MS">Comic Sans MS</option><option
+value="Courier New">Courier New</option><option
+value="Monotype Corsiva">Monotype</option><option
+value="Tahoma New">Tahoma</option><option
+value="Times">Times</option><option
+value="Trebuchet New">Trebuchet</option><option
+value="Ubuntu">Ubuntu</option>
+</select></div>
+
+<iframe
+frameborder="0" id="textEditor" style="width:500px; border:2px solid #CCC;border-radius:20px;overflow:auto;margin: 10px;"><!doctype><html><head></head><body> make me bro</body></html></iframe><textarea name="text" id='text' style="border-radius:20px;overflow:auto;display:none;padding-left: 10px;margin: 10px;" rows="6" cols="53"></textarea></div>
+<div class="site-footer">
+
+</div>-->
+</body>
+
+</html>

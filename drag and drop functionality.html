@@ -1,0 +1,233 @@
+
+  <title>drag and drop functionality</title>
+
+  <style>
+#a { background: #BBBBFF; height: 50px; }
+#b { background: #BBFFBB;  height: 50px;}
+  </style>
+  
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+    
+    
+<link rel="stylesheet" type="text/css" href="file:///C:/Users/PureTech/Desktop/jquery/jquery-ui.css"/>
+
+<script src="file:///C:/Users/PureTech/Downloads/jscolor-2.0.4/jscolor.js"></script>
+
+
+
+  
+  
+
+  
+  
+  
+
+  
+
+  
+  
+
+  
+
+  <style type="text/css">
+    #a { background: #BBBBFF; height:50px;}
+#b { background: #BBFFBB; height:50px;}
+
+
+.left{
+border-style: solid !important;
+border-width: 5px 0px 0px 5px !important;
+border-color: green !important;
+
+}
+.right{
+border-style: solid !important;
+border-width: 0px 5px 5px 0px !important;
+border-color: green !important;
+}
+
+
+.testers{
+height: 100px;
+width: 100px;
+background: purple;
+margin: 10px;
+display: inline-block;
+}
+.tester{
+height: 100px;
+width: 100px;
+background: purple;
+margin: 10px;
+}
+  </style>
+  
+    
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+
+
+/*------------ EXCLUDE IN THE COMPILATION PROCESS -----------------*/
+/*----- give the clicked element .active class ------------*/
+$(".tab").click(function () {
+        if(!$(this).hasClass('active'))
+        {
+            $(".tab.active").removeClass("active");
+            $(".tab.active").remove(".marginers");
+            $(this).addClass("active");
+        }
+		});
+
+
+$('*').addClass('tab');
+
+
+ /*   ------------- get the direction of the mouse--------------------*/
+	var direction = "",
+    oldx = 0,
+    mousemovemethod = function (e) {
+    
+        var last_position = {},
+    $output       = $('#output'),
+    mousemove_ok  = true,
+    mouse_timer   = setInterval(function () {
+        mousemove_ok = true;
+    }, 1000),
+    count         = 1;
+$(document).on('mousemove', function (event) {
+    if (mousemove_ok) {
+        mousemove_ok = false;
+        if (typeof(last_position.x) != 'undefined') {
+            var deltaX = last_position.x - event.clientX,
+                deltaY = last_position.y - event.clientY;
+            if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX > 0) {
+                //left
+                direction = 'left'
+            } else if (Math.abs(deltaX) > Math.abs(deltaY) && deltaX < 0) {
+                //right
+                direction = 'right'
+            } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY > 0) {
+                //up
+                direction = 'top'
+            } else if (Math.abs(deltaY) > Math.abs(deltaX) && deltaY < 0) {
+                //down
+                direction = 'bottom'
+            }
+            if ($output.children().length> 1) {
+                $output.children().eq(0).remove();
+            }
+        }
+        last_position = {
+            x : event.clientX,
+            y : event.clientY
+        };
+    }
+});
+        
+        document.getElementById('director').innerHTML = direction;
+		$('#director').removeClass('right left top bottom').addClass(direction);
+    $('.highlight').removeClass('right left top bottom').addClass(direction);
+    
+		$('.activeOnHover').removeClass('right left bottom top').addClass(direction);
+        
+        oldx = e.pageX;
+        
+}
+
+document.addEventListener('mousemove', mousemovemethod);
+
+/*---------------------------------------------------------*/
+ $('.active').dblclick(function(){
+  $('#director').addClass('appendMe');
+});
+ $('*').addClass('tab');
+$('.tab').draggable({
+                helper:"clone",
+                containment:"document",
+                drag: function(){
+              
+                }
+                
+});
+
+$('.tab').droppable({
+        hoverClass: 'highlight',
+        greedy: true,
+        
+        // while over
+       /*over: function(){
+        if($('#director').hasClass('appendMe')){
+        $(this).addClass('highlight');
+            }
+        else if($('#director').hasClass('right')){
+            $(this).addClass('right');
+            }else if($('#director').hasClass('left')){
+            $(this).addClass('left');
+            }else{}
+            
+        },*/
+        // on drop------------------
+        drop:function(event, ui) {
+        if($('#director').hasClass('appendMe')){
+            ui.draggable.detach().appendTo($(this));
+            }
+        else if($('#director').hasClass('bottom')){
+		
+            ui.draggable.detach().insertAfter($(this));
+			$('.active').css({'float': 'unset', 'display': 'block'});
+			
+            }else if($('#director').hasClass('top')){
+			
+            ui.draggable.detach().insertBefore($(this));
+			$('.active').css({'float': 'unset', 'display': 'block'});
+			
+            }else if($('#director').hasClass('left')){
+			
+            ui.draggable.detach().insertBefore($(this));
+			$('.active').next().css({display: 'inline-block'});
+			$('.active').css({display: 'inline-block'});
+			
+            }else if($('#director').hasClass('right')){
+			
+            ui.draggable.detach().insertAfter($(this));
+			$('.active').prev().css({display: 'inline-block'});
+			$('.active').css({display: 'inline-block'});
+			
+            }else{}
+          $('#director').removeClass('appendMe');
+          $('.ui-droppable').removeClass('right left top  bottom');
+        },
+        out: function(){
+        $('.ui-droppable').removeClass('right left top bottom');
+        }
+      
+
+});
+
+
+    
+});//]]> 
+
+</script>
+
+  
+
+<div class="tester"></div>
+<div class="testers active">Make me happy</div>
+<div class="testers"></div>
+<div class="testers" style="display:block; float: unset;"></div>
+<div class="testers"></div>
+<div class="testers"></div>
+
+<div id="director"></div>
+  
+
+
+
+
+ 

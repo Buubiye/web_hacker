@@ -1,0 +1,75 @@
+
+<script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+    <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+    <link rel="stylesheet" href="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui.css" type="text/css" media="all" />
+	
+	
+	
+
+<div id="a"><span class=" dragMe ele active tab">element</span>...</div>
+<div class="me3">....</div>
+
+
+<script>
+$(function(){
+
+$('.dragMe').draggable({
+                helper:"clone",
+                containment:"document"
+});
+
+$('.me3').droppable({
+accept: '.dragMe',
+        drop:function(event, ui) {
+            ui.draggable.clone().appendTo($(this));
+ $('.me3 span').removeClass('dragMe');        $('.ele').draggable();  
+        }
+        
+});
+ $('.ele').draggable();
+ 
+ 
+/* make a wrapper for the .active class */
+
+$(".me3 .tab").click(function(){
+ if(!$(this).hasClass('active')){
+     $('.active').wrap("div class='wrapper'></div>");
+	 $('.wrapper').append('<div class="activeHandle"></div>');
+ }
+});
+
+$('.wrapper').draggable({
+   containment: '.me3',
+   handle: 'activeHandle'
+});
+ 
+ 
+ 
+});
+</script>
+
+
+
+
+<style>
+
+.me3{
+height:300px;
+width: 300px;
+border: 1px solid black;
+float: right;
+}
+
+#a{
+height: 300px;
+width: 150px;
+float:right;
+border: 1px solid black;
+}
+.activeHandle{
+height: 30px;
+width: 30px;
+background: green;
+}
+
+</style>

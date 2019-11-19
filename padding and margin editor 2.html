@@ -1,0 +1,391 @@
+
+
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-1.12.4.js"></script>
+  <script src="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui-1.12.0.js"></script>
+  <link rel="stylesheet" href="file:///C:/Users/PureTech/Desktop/All/jquery/jquery-ui.css" type="text/css" media="all" /> 
+
+
+
+
+
+<div id="margin_padding">
+<!-- mp = margin-padding-->
+<div id="margin">
+ 
+<div id="margin-top"><input class="margin-top mp" type="number"/></div>
+<div id="margin-left"><input class="margin-left mp"/></div>
+     <div id="padding">
+
+        <div id="padding-top"><input class="padding-top mp"/></div>
+        <div id="padding-left"><input class="padding-left mp"/></div>
+        <div id="padding-right"><input class="padding-right mp"/></div>
+        <div id="padding-bottom"><input class="padding-bottom mp"/></div>
+
+     </div>
+
+<div id="margin-right"><input class="margin-right mp"/></div>
+<div id="margin-bottom"><input class="margin-bottom mp"/></div>
+
+</div>
+
+<div class='mp-sliders'>
+<div id="mt-slider" class="mSliders"></div> 
+<div id="ml-slider" class="mSliders"></div> 
+<div id="mr-slider" class="mSliders"></div>
+<div id="mb-slider" class="mSliders"></div>
+<br>
+<br>
+<br>
+<div id="pt-slider" class="pSliders"></div> 
+<div id="pl-slider" class="pSliders"></div> 
+<div id="pr-slider" class="pSliders"></div>
+<div id="pb-slider" class="pSliders"></div>
+</div>
+
+</div>
+
+
+
+<style>
+.mp{
+width: 35px; 
+position: relative;
+}
+
+.margin{}
+.margin-top{left: 80px;}
+.margin-left{position: relative; top: 42px;}
+.margin-right{left: 160px; position: relative; top:-42px;}
+.margin-bottom{left: 80px;}
+
+#padding{margin-left:80px;}
+.padding-top{}
+.padding-left{margin-left: -35px;}
+.padding-right{    margin-left: 35px; margin-top: -20px;}
+.paddding-bottom{}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<div class="active" style="height: 100px; width:100px; border: 40px solid green"></div>
+
+
+<script>
+
+
+$('.marginInputs').click(function(){
+  if(!$(this).hasClass('activeInput')){
+     $('.marginInputs.activeInput').removeClass('activeInput');
+     $(this).addClass('activeInput');
+  }
+});
+
+/*------ margin-top ------------------*/
+var getMarginTop = '';
+$('.active').click(function(){
+var getMarginTop = $('.active').css('marginTop').replace("px", "");
+$(".margin-top").val(getMarginTop);
+});
+// set the editor 
+// the input and slider
+$('.margin-top').val(getMarginTop);
+
+$("#mt-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getMarginTop,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".margin-top").val(heb2);
+        $(".active").css({
+            marginTop: heb2
+        })
+    }
+});
+
+$(".margin-top").on('change', function() {
+    $("#mt-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-top').val();
+    $('.active').css({marginTop: setBW+'px'});
+});
+
+/*------ margin-Left ------------------*/
+var getMarginLeft = '';
+$('.active').click(function(){
+var getMarginLeft = $('.active').css('marginLeft').replace("px", "");
+$(".margin-left").val(getMarginLeft);
+});
+// set the editor 
+// the input and slider
+$('.margin-left').val(getMarginLeft);
+
+$("#ml-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getMarginLeft,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".margin-left").val(heb2);
+        $(".active").css({
+            marginLeft: heb2
+        })
+    }
+});
+
+$(".margin-left").on('change', function() {
+    $("#ml-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-left').val();
+    $('.active').css({marginLeft: setBW+'px'});
+});
+
+/*------ margin-Right ------------------*/
+var getMarginRight = '';
+$('.active').click(function(){
+var getMarginRight = $('.active').css('marginRight').replace("px", "");
+$(".margin-right").val(getMarginRight);
+});
+// set the editor 
+// the input and slider
+$('.margin-right').val(getMarginRight);
+
+$("#mr-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getMarginRight,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".margin-right").val(heb2);
+        $(".active").css({
+            marginRight: heb2
+        })
+    }
+});
+
+$(".margin-right").on('keyup', function() {
+    $("#mr-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-right').val();
+    $('.active').css({marginRight: setBW+'px'});
+});
+/*------ margin-Bottom ------------------*/
+var getMarginBottom = '';
+$('.active').click(function(){
+var getMarginBottom = $('.active').css('marginBottom').replace("px", "");
+$(".margin-bottom").val(getMarginBottom);
+});
+// set the editor 
+// the input and slider
+$('.margin-bottom').val(getMarginBottom);
+
+$("#mb-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getMarginBottom,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".margin-bottom").val(heb2);
+        $(".active").css({
+            marginBottom: heb2
+        })
+    }
+});
+
+$(".margin-bottom").on('keyup', function() {
+    $("#mb-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.margin-bottom').val();
+    $('.active').css({marginBottom: setBW+'px'});
+});
+
+/*------ padding-top ------------------*/
+var getPaddingTop = '';
+$('.active').click(function(){
+var getPaddingTop = $('.active').css('paddingTop').replace("px", "");
+$(".padding-top").val(getPaddingTop);
+});
+// set the editor 
+// the input and slider
+$('.padding-top').val(getPaddingTop);
+
+$("#pt-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getPaddingTop,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".padding-top").val(heb2);
+        $(".active").css({
+            paddingTop: heb2
+        })
+    }
+});
+
+$(".padding-top").on('keyup', function() {
+    $("#pt-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-top').val();
+    $('.active').css({paddingTop: setBW+'px'});
+});
+
+
+/*------ padding-Left ------------------*/
+var getPaddingLeft = '';
+$('.active').click(function(){
+var getPaddingLeft = $('.active').css('paddingLeft').replace("px", "");
+$(".padding-left").val(getPaddingLeft);
+});
+// set the editor 
+// the input and slider
+$('.padding-left').val(getPaddingLeft);
+
+$("#pl-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getPaddingLeft,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".padding-left").val(heb2);
+        $(".active").css({
+            paddingLeft: heb2
+        })
+    }
+});
+
+$(".padding-left").on('keyup', function() {
+    $("#pl-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-left').val();
+    $('.active').css({paddingLeft: setBW+'px'});
+});
+
+/*------ padding-Right ------------------*/
+var getPaddingRight = '';
+$('.active').click(function(){
+var getPaddingRight = $('.active').css('paddingRight').replace("px", "");
+$(".padding-right").val(getPaddingRight);
+});
+// set the editor 
+// the input and slider
+$('.padding-right').val(getPaddingRight);
+
+$("#pr-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getPaddingRight,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".padding-right").val(heb2);
+        $(".active").css({
+            paddingRight: heb2
+        })
+    }
+});
+
+$(".padding-right").on('keyup', function() {
+    $("#pr-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-right').val();
+    $('.active').css({paddingRight: setBW+'px'});
+});
+/*------ padding-Bottom ------------------*/
+var getPaddingBottom = '';
+$('.active').click(function(){
+var getPaddingBottom = $('.active').css('paddingBottom').replace("px", "");
+$(".padding-bottom").val(getPaddingBottom);
+});
+// set the editor 
+// the input and slider
+$('.padding-bottom').val(getPaddingBottom);
+
+$("#pb-slider").slider({
+    orientation: "horizontal",
+    range: false,
+    min: -500,
+    max: 500,
+    value: getPaddingBottom,
+    step: 1,
+    animate: true,
+    slide: function(event, ui) {
+        var heb2 = (ui.value);
+        $("#a_field2").val(ui.value);
+        $(".padding-bottom").val(heb2);
+        $(".active").css({
+            paddingBottom: heb2
+        })
+    }
+});
+
+$(".padding-bottom").on('keyup', function() {
+    $("#pb-slider").slider(
+        "value", $(this).val()
+
+    );
+    var setBW = $('.padding-bottom').val();
+    $('.active').css({paddingBottom: setBW+'px'});
+});
+</script>

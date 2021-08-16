@@ -1,8 +1,8 @@
 /* general css */
 
 /* code editor and text editor style */
- body{
-      font-family: open sans;
+  body{
+      font-family: 'Ubuntu' !important;
 	  
     }
 .logo{
